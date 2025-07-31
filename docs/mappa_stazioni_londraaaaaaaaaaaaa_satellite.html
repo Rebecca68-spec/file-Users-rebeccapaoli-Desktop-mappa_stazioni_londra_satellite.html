@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Mappa Stazioni Londra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet per mappa interattiva -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    #map { height: 100vh; width: 100%; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    var map = L.map('map').setView([51.5072, -0.1276], 12); // centro Londra
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var stazioni = [
+      [51.5308, -0.1238, "1. London King’s Cross"],
+      [51.5314, -0.1260, "2. London St Pancras International"],
+      [51.5282, -0.1337, "3. London Euston"],
+      [51.5150, -0.1754, "4. London Paddington"],
+      [51.5033, -0.1147, "5. London Waterloo"],
+      [51.4952, -0.1440, "6. London Victoria"],
+      [51.5176, -0.0824, "7. London Liverpool Street"],
+      [51.5055, -0.0865, "8. London Bridge"],
+      [51.5081, -0.1247, "9. London Charing Cross"],
+      [51.5111, -0.1030, "10. London Blackfriars"]
+    ];
+
+    stazioni.forEach(function(s) {
+      L.marker([s[0], s[1]]).addTo(map).bindPopup(s[2]);
+    });
+  </script>
+</body>
+</html>
